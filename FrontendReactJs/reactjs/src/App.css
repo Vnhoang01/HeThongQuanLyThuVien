@@ -1,0 +1,659 @@
+.App {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.navbar {
+  background-color: #212529 !important;
+  padding: 14px 30px;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  color: #f8f9fa !important;
+  font-size: 17px;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #0d6efd !important;
+}
+
+.navbar-toggler {
+  background-color: white;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+
+/* =========================
+   BANNER
+========================= */
+.banner {
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.banner-overlay {
+  background: rgba(0,0,0,0.5);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-content {
+  color: white;
+}
+
+.banner-content h1 {
+  font-size: 55px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.banner-content p {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.banner-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0d6efd;
+  color: white;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.banner-btn:hover {
+  background-color: #0b5ed7;
+  transform: scale(1.05);
+}
+
+/* =========================
+   CAROUSEL
+========================= */
+.carousel {
+  margin-top: 40px;
+}
+
+.carousel-item img {
+  height: 550px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.carousel-caption {
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-caption h3 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-size: 18px;
+}
+
+/* =========================
+   CARD SECTION
+========================= */
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card img:not(.book-image) {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #666;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-custom {
+  background-color: #212529;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-custom:hover {
+  background-color: #0d6efd;
+}
+
+/* =========================
+   FOOTER
+========================= */
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background-color: #212529;
+  color: white;
+  margin-top: 60px;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+footer h3,
+footer h4 {
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+footer p {
+  color: #cccccc;
+  line-height: 1.8;
+}
+
+footer .list-group-item {
+  background-color: transparent !important;
+  color: #cccccc !important;
+  border: none;
+  padding-left: 0;
+  transition: 0.3s;
+}
+
+footer .list-group-item:hover {
+  color: #0d6efd !important;
+  padding-left: 5px;
+}
+
+footer hr {
+  border-color: rgba(255,255,255,0.2);
+  margin: 30px 0 20px;
+}
+
+footer .text-center {
+  color: #aaaaaa;
+  font-size: 15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .banner-content h1 {
+    font-size: 35px;
+  }
+
+  .banner-content p {
+    font-size: 16px;
+  }
+
+  .carousel-item img {
+    height: 300px;
+  }
+
+  .carousel-caption h3 {
+    font-size: 22px;
+  }
+
+  .carousel-caption p {
+    font-size: 14px;
+  }
+}
+
+.book-card {
+  transition: 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+.book-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,.1);
+  transition: .3s;
+  height: 100%;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+.book-image {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  background: #fff;
+  padding: 10px;
+}
+
+.book-card {
+  height: 100%;
+  border-radius: 15px;
+}
+
+.book-card h4 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.book-card p {
+  margin-bottom: 8px;
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.borrow-book-image {
+  width: 70px !important;
+  height: 100px !important;
+  object-fit: contain !important;
+  background: white;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* =========================
+   CỘT MENU HỆ THỐNG (ẩn/hiện)
+   ========================= */
+
+/* Cột menu cố định bên trái ở màn hình lớn, chiều rộng do JS điều khiển khi ẩn/hiện.
+   PHẢI dùng flex: 0 0 auto (không dùng flex-basis cố định) để width inline của JS có hiệu lực */
+.system-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 272px;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-right: 1px solid #e6eaf0;
+}
+
+/* Menu trượt ra ở màn hình nhỏ */
+.system-sidebar-mobile {
+  width: 288px;
+  border-right: none;
+}
+
+/* Trên mobile tiêu đề đã nằm trong offcanvas header nên không hiện 2 lần */
+.system-sidebar-mobile .sidebar-title {
+  display: none;
+}
+
+/* Header của menu trượt trên mobile, cùng màu với navbar */
+.system-sidebar-mobile .offcanvas-header {
+  background-image: linear-gradient(135deg, #1f2430 0%, #212529 100%);
+  color: #ffffff;
+  border-bottom: 3px solid #0d6efd;
+}
+
+.system-sidebar-mobile .offcanvas-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+/* Bố cục bên trong cột menu: tiêu đề - nhãn phân vùng - danh sách - chân trang */
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100%;
+  background-color: #ffffff;
+}
+
+/* Tiêu đề cột menu, cùng màu navbar + gạch chân xanh tạo điểm nhấn */
+.sidebar-title {
+  padding: 18px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  background-image: linear-gradient(135deg, #1f2430 0%, #212529 100%);
+  border-bottom: 3px solid #0d6efd;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Nhãn phân vùng danh sách chức năng */
+.sidebar-section-title {
+  padding: 20px 18px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #98a2b3;
+}
+
+/* Danh sách menu, có thanh cuộn mỏng khi danh mục quá dài */
+.sidebar-nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-wrap: nowrap;
+  gap: 6px;
+  padding: 4px 14px 14px;
+  overflow-y: auto;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background-color: #cfd6e4;
+  border-radius: 3px;
+}
+
+/* Mục menu: bo tròn, giãn nhẹ khi rê chuột */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #344054;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #eef2f8;
+  color: #0d6efd;
+  transform: translateX(3px);
+}
+
+/* Danh mục đang mở: nền xanh gradient + đổ bóng nhẹ */
+.sidebar-link.active {
+  background-image: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 100%);
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.35);
+  transform: none;
+}
+
+/* Chân trong cột menu luôn nằm sát đáy */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 14px 18px;
+  font-size: 12.5px;
+  text-align: center;
+  color: #98a2b3;
+  background-color: #f7f9fc;
+  border-top: 1px dashed #e6eaf0;
+}
+
+.system-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+/* Màn hình nhỏ: bỏ cột menu cố định, chỉ dùng menu trượt ra */
+@media (max-width: 991.98px) {
+  .system-sidebar {
+    display: none;
+  }
+}
+
+/* =========================
+   TRANG DANH SÁCH (6 BẢNG)
+   ========================= */
+
+/* Đầu trang: tiêu đề trái, nút thêm mới phải */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.page-subtitle {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #98a2b3;
+}
+
+/* Nút thêm mới */
+.add-btn {
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* Thẻ bọc bảng */
+.table-card {
+  background-color: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+/* Thanh tiêu đề của thẻ bảng */
+.table-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #eef1f6;
+  background-color: #fafbfd;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Bảng danh sách */
+.list-table {
+  margin-bottom: 0;
+}
+
+.list-table thead th {
+  background-color: #f4f7fb;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e6eaf0;
+  white-space: nowrap;
+}
+
+.list-table tbody td {
+  padding: 14px 20px;
+  font-size: 14.5px;
+  color: #344054;
+  border-color: #f1f4f8;
+}
+
+.list-table tbody tr:nth-child(even) {
+  background-color: #fbfcfe;
+}
+
+.list-table tbody tr:hover {
+  background-color: #eef4ff;
+}
+
+/* Ô số thứ tự / ID dạng viên thuốc */
+.id-badge {
+  display: inline-block;
+  min-width: 34px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #eef2ff;
+  color: #3b5bdb;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Ô giá trị quan trọng (tên...) */
+.cell-strong {
+  font-weight: 600;
+  color: #101828;
+}
+
+/* Trạng thái rỗng */
+.table-empty {
+  padding: 48px 20px;
+  text-align: center;
+  color: #98a2b3;
+  font-size: 15px;
+}
+
+.table-empty .empty-icon {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+/* Trạng thái đang tải */
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 56px 20px;
+  color: #98a2b3;
+}
+
+/* Cột số thứ tự (STT) */
+.stt-cell {
+  text-align: center;
+  color: #667085;
+  font-weight: 600;
+  width: 56px;
+}
+
+/* =========================
+   FORM THÊM / SỬA DỮ LIỆU
+   ========================= */
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  padding: 24px;
+  max-width: 720px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #344054;
+}
+
+.required-star {
+  color: #f04438;
+}
+
+.form-card .form-control {
+  border-radius: 10px;
+  border-color: #dce1e8;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+.form-card .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.form-actions .btn {
+  border-radius: 10px;
+  padding: 9px 20px;
+  font-weight: 600;
+}
+
+/* Cột thao tác (Sửa / Xóa) trong bảng danh sách */
+.action-group {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.action-group .btn {
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
