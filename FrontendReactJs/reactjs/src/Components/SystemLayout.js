@@ -1,62 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
 
-import { Navbar, Nav, Button, Offcanvas, Container } from 'react-bootstrap';
+import { Navbar, Button, Offcanvas, Container } from 'react-bootstrap';
 
-import { getEmail, getRole, hasAnyRole, clearAuth } from '../Utils/auth';
+import SidebarContent from './Sidebar';
+
+import { getEmail, getRole, clearAuth } from '../Utils/auth';
 
 //Nhãn hiển thị cho từng role
 const ROLE_LABELS = {
   ADMIN: 'Quản trị viên',
   LIBRARIAN: 'Thủ thư'
 };
-
-//Danh sách các danh mục của hệ thống, hiển thị thành cột menu bên trái
-//roles: mảng role được phép thấy menu này, để trống thì mọi vai trò đều thấy
-const MENU = [
-  {
-    title: 'Thể loại',
-    description: 'Quản lý thể loại sách',
-    icon: '🗂️',
-    path: '/categories',
-    roles: ['ADMIN']
-  },
-  {
-    title: 'Tác giả',
-    description: 'Quản lý tác giả',
-    icon: '✍️',
-    path: '/authors',
-    roles: ['ADMIN']
-  },
-  {
-    title: 'Nhà xuất bản',
-    description: 'Quản lý nhà xuất bản',
-    icon: '🏢',
-    path: '/publishers',
-    roles: ['ADMIN']
-  },
-  {
-    title: 'Khách hàng',
-    description: 'Quản lý khách hàng của thư viện',
-    icon: '👤',
-    path: '/customers',
-    roles: ['ADMIN']
-  },
-  {
-    title: 'Tài khoản admin',
-    description: 'Quản lý tài khoản quản trị',
-    icon: '🔑',
-    path: '/admins',
-    roles: ['ADMIN']
-  },
-  {
-    title: 'Lỗi sách',
-    description: 'Danh mục lỗi và tiền phạt',
-    icon: '⚠️',
-    path: '/errors',
-    roles: ['ADMIN', 'LIBRARIAN']
-  }
-];
 
 //Chiều rộng cột menu khi hiển thị đầy đủ (cùng với .system-sidebar trong App.css)
 const SIDEBAR_WIDTH = 272;
@@ -71,62 +26,6 @@ const ANIM_DURATION = 320;
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 //Nội dung cột menu, dùng chung cho màn hình lớn và màn hình nhỏ
-function SidebarContent({ location, onNavigate, innerRef, navRef }) {
-
-  //Kiểm tra đường dẫn hiện tại có thuộc danh mục nào để tô đậm menu đang mở
-  const isActive = (path) => location.pathname === path || location.pathname === path + '/create';
-
-  //Chỉ hiển thị menu mà vai trò hiện tại được phép xem (VD: thủ thư không thấy Thể loại, Khách hàng...)
-  const visibleMenu = MENU.filter((item) => hasAnyRole(item.roles));
-
-  return (
-    <div className="sidebar-content" ref={innerRef}>
-
-      {/* Tiêu đề menu, cùng màu với thanh tiêu đề Hệ thống Quản lý Thư viện */}
-      <div className="sidebar-title">
-        <span className="sidebar-title-text">
-          📚 Quản lý Thư viện
-        </span>
-      </div>
-
-      {/* Nhãn phân vùng danh sách chức năng */}
-      <div className="sidebar-section-title">
-        Chức năng hệ thống
-      </div>
-
-      <Nav ref={navRef} className="flex-column sidebar-nav">
-
-        <Nav.Link
-          as={NavLink}
-          to="/"
-          end
-          onClick={onNavigate}
-          className={'sidebar-link' + (location.pathname === '/' ? ' active' : '')}
-        >
-          🏠 Trang chủ
-        </Nav.Link>
-
-        {visibleMenu.map((item) => (
-          <Nav.Link
-            key={item.path}
-            as={NavLink}
-            to={item.path}
-            onClick={onNavigate}
-            className={'sidebar-link' + (isActive(item.path) ? ' active' : '')}
-          >
-            {item.icon} {item.title}
-          </Nav.Link>
-        ))}
-
-      </Nav>
-
-      <div className="sidebar-footer">
-        Có {visibleMenu.length} danh mục trong hệ thống
-      </div>
-
-    </div>
-  );
-}
 
 //Layout chung cho mọi trang bên trong hệ thống: cột menu trái + navbar + nội dung
 function SystemLayout() {
@@ -320,3 +219,4 @@ function SystemLayout() {
 }
 
 export default SystemLayout;
+

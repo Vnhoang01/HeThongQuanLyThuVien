@@ -11,10 +11,10 @@ const ROLE_LABELS = {
 //Các chức năng trong hệ thống (tương ứng các danh mục trong cột menu bên trái)
 //roles: mảng role được phép thấy thẻ chức năng này, để trống thì mọi vai trò đều thấy
 const MENU = [
-  { title: 'Thể loại', description: 'Quản lý thể loại sách', icon: '🗂️', path: '/categories', roles: ['ADMIN'] },
-  { title: 'Tác giả', description: 'Quản lý tác giả', icon: '✍️', path: '/authors', roles: ['ADMIN'] },
-  { title: 'Nhà xuất bản', description: 'Quản lý nhà xuất bản', icon: '🏢', path: '/publishers', roles: ['ADMIN'] },
+  { title: 'Books', description: 'Quản lý sách', icon: '📖', path: '/books', roles: ['ADMIN'] },
   { title: 'Khách hàng', description: 'Quản lý khách hàng của thư viện', icon: '👤', path: '/customers', roles: ['ADMIN'] },
+  { title: 'Phiếu mượn', description: 'Danh sách phiếu mượn', icon: '📋', path: '/loans', roles: ['ADMIN', 'LIBRARIAN'] },
+  { title: 'Nhà xuất bản', description: 'Quản lý nhà xuất bản', icon: '🏢', path: '/publishers', roles: ['ADMIN'] },
   { title: 'Tài khoản admin', description: 'Quản lý tài khoản quản trị', icon: '🔑', path: '/admins', roles: ['ADMIN'] },
   { title: 'Lỗi sách', description: 'Danh mục lỗi và tiền phạt', icon: '⚠️', path: '/errors', roles: ['ADMIN', 'LIBRARIAN'] }
 ];
@@ -72,3 +72,4 @@ function HomePage() {
 }
 
 export default HomePage;
+

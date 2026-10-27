@@ -5,6 +5,12 @@ import { useEffect } from "react";
 
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
+import BookList from "./Components/BookList";
+import AddBookForm from "./Components/AddBookForm";
+import LoanSlipList from "./Components/LoanSlipList";
+import AddLoanSlipForm from "./Components/AddLoanSlipForm";
+import EditLoanSlipForm from "./Components/EditLoanSlipForm";
+
 import CategoryList from './Components/CategoryList';
 import AddCategoryForm from './Components/AddCategoryForm';
 import EditCategoryForm from './Components/EditCategoryForm';
@@ -16,6 +22,7 @@ import EditAuthorForm from './Components/EditAuthorForm';
 import PublisherList from './Components/PublisherList';
 import AddPublisherForm from './Components/AddPublisherForm';
 import EditPublisherForm from './Components/EditPublisherForm';
+import EditBookForm from './Components/EditBookForm';
 
 import CustomerList from './Components/CustomerList';
 import AddCustomerForm from './Components/AddCustomerForm';
@@ -132,6 +139,16 @@ function App() {
             <Route path="/customers" element={<CustomerList />} />
             <Route path="/customers/create" element={<AddCustomerForm />} />
             <Route path="/customers/edit/:id" element={<EditCustomerForm />} />
+
+            {/* Book */}
+            <Route path="/books" element={<BookList />} />
+            <Route path="/books/create" element={<AddBookForm />} />
+            <Route path="/books/edit/:id" element={<EditBookForm />} />
+
+            {/* Loan Slip */}
+            <Route path="/loans" element={<LoanSlipList />} />
+            <Route path="/loans/create" element={<AddLoanSlipForm />} />
+            <Route path="/loans/edit/:id" element={<EditLoanSlipForm />} />
 
             {/* Admin */}
             <Route path="/admins" element={<AdminList />} />

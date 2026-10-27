@@ -245,9 +245,8 @@ export const formatStatus = (value) => {
 
 //Vai trò
 export const formatRole = (value) => {
-    const map = { admin: 'Quản trị viên', user: 'Người dùng', staff: 'Nhân viên', manager: 'Quản lý' };
+    const map = { admin: 'Quản trị viên', librarian: 'Thủ thư', user: 'Người dùng', staff: 'Nhân viên', manager: 'Quản lý' };
     const key = String(value ?? '').trim().toLowerCase();
 
     return map[key] || toVietnamese(value, true);
 };
-

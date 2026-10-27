@@ -656,4 +656,43 @@ footer .text-center {
   border-radius: 8px;
   padding: 4px 10px;
   font-size: 13px;
+}/* =========================
+   CHÍNH SÁCH C?T MENU: NHÓM SÁCH
+   ========================= */
+
+.sidebar-group-children {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 14px;
+  border-left: 3px solid #e6eaf0;
+}
+
+.sidebar-group-children .sidebar-link {
+  font-size: 14px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.sidebar-group-children .sidebar-link:hover {
+  background-color: #eef2f8;
+  color: #0d6efd;
+}
+
+.toggle-icon {
+  transition: transform 0.2s ease;
+}
+
+.sidebar-link.open .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Hi?n th? active b?ng xanh #007bff nhý yêu c?u */
+.sidebar-link.active, .sidebar-link.active.open {
+  background-image: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.35);
 }
