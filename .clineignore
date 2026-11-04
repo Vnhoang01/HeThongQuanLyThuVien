@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+vendor/
+.venv/
+__pycache__/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+target/
+
+# Testing artifacts
+coverage/
+.nyc_output/
+
+# Environment variables
+.env
+.env.*
+
+# Large data files
+*.csv
+*.xlsx
+*.sqlite
+*.parquet
+
+# Generated or minified code
+*.min.js
+*.map
+src/generated/
