@@ -10,14 +10,14 @@ const LoanSlipList = () => {
 const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        apiFetch('http://localhost:8080/loans', { headers: { ...authHeaders() } })
+        apiFetch('http://localhost:8080/loan-slips', { headers: { ...authHeaders() } })
             .then(data => { setLoans(data); setLoading(false); })
             .catch(error => { console.error('Lỗi tải dữ liệu mượn', error); setLoading(false); });
     }, []);
 
     const handleDelete = (loan) => {
         if (!window.confirm(`Bạn có chắc muốn xóa phiếu mượn "${loan.Code}" không?`)) return;
-        apiFetch(`http://localhost:8080/loans/${loan.Id}`, {
+        apiFetch(`http://localhost:8080/loan-slips/${loan.Id}`, {
             method: 'DELETE', headers: { ...authHeaders() }
         })
             .then(() => { setLoans(loans => loans.filter(l => l.Id !== loan.Id)); })

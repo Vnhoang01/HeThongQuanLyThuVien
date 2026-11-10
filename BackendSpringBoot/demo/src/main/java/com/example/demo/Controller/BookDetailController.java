@@ -22,6 +22,12 @@ public class BookDetailController {
         return bookDetailService.getAllBookDetail();
     }
 
+    // Phương thức lấy danh sách bản ghi theo ID sách
+    @GetMapping("/book/{bookId}")
+    public List<BookDetail> getBookDetailsByBookId(@PathVariable Long bookId) {
+        return bookDetailService.getBookDetailsByBookId(bookId);
+    }
+
     // Phương thức lấy 1 bản ghi
     @GetMapping("/{Id}")
     public BookDetail getBookDetailById(@PathVariable Long Id) {

@@ -12,7 +12,10 @@ import {
 } from "react-router-dom";
 
 import BookList from "./Components/BookList";
+import BookDetailList from "./Components/BookDetailList";
 import AddBookForm from "./Components/AddBookForm";
+import EditBookForm from "./Components/EditBookForm";
+
 import LoanSlipList from "./Components/LoanSlipList";
 import AddLoanSlipForm from "./Components/AddLoanSlipForm";
 import EditLoanSlipForm from "./Components/EditLoanSlipForm";
@@ -28,7 +31,6 @@ import EditAuthorForm from "./Components/EditAuthorForm";
 import PublisherList from "./Components/PublisherList";
 import AddPublisherForm from "./Components/AddPublisherForm";
 import EditPublisherForm from "./Components/EditPublisherForm";
-import EditBookForm from "./Components/EditBookForm";
 
 import CustomerList from "./Components/CustomerList";
 import AddCustomerForm from "./Components/AddCustomerForm";
@@ -48,17 +50,16 @@ import HomePage from "./Pages/HomePage";
 import PrivateRoute from "./Components/PrivateRoute";
 import SystemLayout from "./Components/SystemLayout";
 
-//Quy tắc khi trang web được tải:
-//- Tải lại trang (F5) -> giữ nguyên trang đang xem
-//- Mở trang mới hoặc quay lại trang từ lịch sử (đóng trang hệ thống đi rồi bật lại)
-//  -> về trang đăng nhập trước, kể cả khi vẫn còn token trong máy
-//Chỉ chạy 1 lần khi trang web được tải, không ảnh hưởng khi di chuyển trong hệ thống
+// Quy tắc khi trang web được tải:
+// - Tải lại trang (F5) -> giữ nguyên trang đang xem.
+// - Mở trang mới hoặc quay lại trang từ lịch sử
+//   -> về trang đăng nhập trước.
+// Chỉ chạy một lần khi trang web được tải.
 function ForceLoginPageOnStart() {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    //Xác định loại tải trang: reload (F5), navigate (mở mới), back_forward (nút lịch sử)
     let navigationType = "navigate";
 
     try {
@@ -68,19 +69,19 @@ function ForceLoginPageOnStart() {
         navigationType = entries[0].type;
       }
     } catch (error) {
-      //Trình duyệt không hỗ trợ thì mặc định là mở trang mới
       navigationType = "navigate";
     }
 
-    //Chỉ khi tải lại trang (F5) thì giữ nguyên trang hiện tại
+    // Chỉ khi tải lại trang (F5) thì giữ nguyên trang hiện tại.
     if (navigationType === "reload") {
       return;
     }
 
-    //Mở trang mới thì về trang đăng nhập trước
+    // Mở trang mới thì về trang đăng nhập trước.
     if (location.pathname !== "/login") {
       navigate("/login", { replace: true });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -118,8 +119,9 @@ function App() {
           </Route>
         </Route>
 
-        {/* Các chức năng chỉ ADMIN được truy cập */}
-        <Route element={<PrivateRoute roles={["ADMIN"]} />}>
+        {/* Quản lý sách, thể loại, tác giả, nhà xuất bản:
+            ADMIN và LIBRARIAN đều được truy cập */}
+        <Route element={<PrivateRoute roles={["ADMIN", "LIBRARIAN"]} />}>
           <Route element={<SystemLayout />}>
             {/* Danh mục */}
             <Route path="/categories" element={<CategoryList />} />
@@ -139,15 +141,21 @@ function App() {
               element={<EditPublisherForm />}
             />
 
-            {/* Khách hàng */}
-            <Route path="/customers" element={<CustomerList />} />
-            <Route path="/customers/create" element={<AddCustomerForm />} />
-            <Route path="/customers/edit/:id" element={<EditCustomerForm />} />
-
             {/* Sách */}
             <Route path="/books" element={<BookList />} />
             <Route path="/books/create" element={<AddBookForm />} />
             <Route path="/books/edit/:id" element={<EditBookForm />} />
+            <Route path="/books/:bookId/details" element={<BookDetailList />} />
+          </Route>
+        </Route>
+
+        {/* Các chức năng chỉ ADMIN được truy cập */}
+        <Route element={<PrivateRoute roles={["ADMIN"]} />}>
+          <Route element={<SystemLayout />}>
+            {/* Khách hàng */}
+            <Route path="/customers" element={<CustomerList />} />
+            <Route path="/customers/create" element={<AddCustomerForm />} />
+            <Route path="/customers/edit/:id" element={<EditCustomerForm />} />
 
             {/* Quản trị viên */}
             <Route path="/admins" element={<AdminList />} />

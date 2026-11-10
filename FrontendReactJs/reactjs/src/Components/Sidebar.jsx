@@ -12,7 +12,7 @@ const MENU = [
     title: 'Sách',
     icon: '📖',
     parentPath: '/books',
-    roles: ['ADMIN'],
+    roles: ['ADMIN', 'LIBRARIAN'],
     children: [
       { key: 'books', title: 'Quản lý Sách', path: '/books', icon: '📖' },
       { key: 'categories', title: 'Thể loại', path: '/categories', icon: '📋' },

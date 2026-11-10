@@ -18,6 +18,11 @@ public class BookDetailService {
         return bookDetailRepository.findAll();
     }
 
+    // Phương thức lấy danh sách bản ghi theo ID sách
+    public List<BookDetail> getBookDetailsByBookId(Long bookId) {
+        return bookDetailRepository.findAllByBookId(bookId);
+    }
+
     // Phương thức lấy 1 bản ghi theo id
     public BookDetail getBookDetailById(Long Id) {
         return bookDetailRepository.findById(Id)

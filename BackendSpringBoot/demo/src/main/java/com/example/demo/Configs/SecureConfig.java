@@ -29,13 +29,13 @@ public class SecureConfig {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    //Cho phép frontend (localhost:3000) gọi sang mọi endpoint, kể cả /auth/login
+    // Cho phép frontend (localhost:3000) gọi sang mọi endpoint, kể cả /auth/login
     @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -47,36 +47,41 @@ public class SecureConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                    //Nhóm cho phép không cần đăng nhập: chỉ đăng ký/đăng nhập
-                    auth.requestMatchers("/auth/**").permitAll()
+                // Nhóm cho phép không cần đăng nhập: chỉ đăng ký/đăng nhập
+                auth.requestMatchers("/auth/**").permitAll()
 
-                            //Nhóm chỉ ADMIN: quản lý tài khoản admin, sách, thể loại, tác giả, nhà xuất bản
-                            .requestMatchers("/admins/**", "/books/**", "/book-details/**",
-                                    "/categories/**", "/authors/**", "/publishers/**").hasRole("ADMIN")
+                        // Nhóm chỉ ADMIN: quản lý tài khoản admin, sách, thể loại, tác giả, nhà xuất
+                        // bản
+                        .requestMatchers("/admins/**").hasRole("ADMIN")
+                        .requestMatchers("/books/**", "/book-details/**",
+                                "/categories/**", "/authors/**", "/publishers/**")
+                        .hasAnyRole("ADMIN", "LIBRARIAN")
 
-                            //Xem danh sách khách hàng: ADMIN và LIBRARIAN (thủ thư cần chọn khách hàng khi lập phiếu mượn)
-                            .requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN", "LIBRARIAN")
+                        // Xem danh sách khách hàng: ADMIN và LIBRARIAN (thủ thư cần chọn khách hàng khi
+                        // lập phiếu mượn)
+                        .requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("ADMIN", "LIBRARIAN")
 
-                            //Chỉ ADMIN được reset mật khẩu khách hàng về mặc định
-                            .requestMatchers(HttpMethod.POST, "/customers/*/reset-password").hasRole("ADMIN")
+                        // Chỉ ADMIN được reset mật khẩu khách hàng về mặc định
+                        .requestMatchers(HttpMethod.POST, "/customers/*/reset-password").hasRole("ADMIN")
 
-                            //Khách hàng tự quản lý thông tin của chính mình: không endpoint nào của admin được sửa/xóa khách hàng
-                            .requestMatchers(HttpMethod.POST, "/customers/**").denyAll()
-                            .requestMatchers(HttpMethod.PUT, "/customers/**").denyAll()
-                            .requestMatchers(HttpMethod.DELETE, "/customers/**").denyAll()
+                        // Khách hàng tự quản lý thông tin của chính mình: không endpoint nào của admin
+                        // được sửa/xóa khách hàng
+                        .requestMatchers(HttpMethod.POST, "/customers/**").denyAll()
+                        .requestMatchers(HttpMethod.PUT, "/customers/**").denyAll()
+                        .requestMatchers(HttpMethod.DELETE, "/customers/**").denyAll()
 
-                            //Nhóm ADMIN và LIBRARIAN: quản lý phiếu mượn và lỗi sách
-                            .requestMatchers("/loan-slips/**", "/loan-slip-details/**",
-                                    "/loan-slip-detail-errors/**", "/errors/**").hasAnyRole("ADMIN", "LIBRARIAN")
+                        // Nhóm ADMIN và LIBRARIAN: quản lý phiếu mượn và lỗi sách
+                        .requestMatchers("/loan-slips/**", "/loan-slip-details/**",
+                                "/loan-slip-detail-errors/**", "/errors/**")
+                        .hasAnyRole("ADMIN", "LIBRARIAN")
 
-                            .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }

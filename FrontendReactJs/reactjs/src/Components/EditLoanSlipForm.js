@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { authHeaders } from '../Utils/auth';
 import { apiFetch } from '../Utils/api';
 
 const EditLoanSlipForm = () => {
     const navigate = useNavigate();
-    const params = navigate().state || {};
-    const loanId = params.id || '';
+    const { id: loanIdFromParams } = useParams();
+    // Lấy ID từ params hoặc fallback về state navigation (để tương thích với navigation cũ)
+    const loanId = loanIdFromParams || navigate().state?.id || '';
 
 ;
 
@@ -17,7 +18,7 @@ const EditLoanSlipForm = () => {
     const [returnDate, setReturnDate] = useState('');
 
     useEffect(() => {
-        apiFetch(`http://localhost:8080/loans/${loanId}`, { headers: { ...authHeaders() } })
+        apiFetch(`http://localhost:8080/loan-slips/${loanId}`, { headers: { ...authHeaders() } })
             .then(loan => {
                 setBookId(loan.Book ? loan.Book.Id : '');
                 setCustomerId(loan.Customer ? loan.Customer.Id : '');
@@ -43,7 +44,7 @@ const EditLoanSlipForm = () => {
             BorrowDate: borrowDate,
             ReturnDate: returnDate
         };
-        apiFetch(`http://localhost:8080/loans/edit/${loanId}`, {
+        apiFetch(`http://localhost:8080/loan-slips/${loanId}`, {
             method: 'PUT',
             headers: { 'Content-type': 'application/json', ...authHeaders() },
             body: JSON.stringify(updatedLoan)
